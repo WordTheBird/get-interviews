@@ -96,7 +96,7 @@ async function showBuilderForm(id) {
       </div>
 
       <div class="card">
-        <h3 class="font-semibold text-lg mb-3">💼 Jobs</h3>
+        <h3 class="font-semibold text-lg mb-3">Jobs</h3>
         ${jobs.length === 0 ? '<p class="text-slate-500 text-sm">No jobs added yet. Go to Jobs to add some.</p>' : ''}
         <div class="space-y-3">
           ${jobs.map(j => renderJobChecklist(j, sel)).join('')}
@@ -104,7 +104,7 @@ async function showBuilderForm(id) {
       </div>
 
       <div class="card">
-        <h3 class="font-semibold text-lg mb-3">🛠️ Skills</h3>
+        <h3 class="font-semibold text-lg mb-3">Skills</h3>
         ${skills.length === 0 ? '<p class="text-slate-500 text-sm">No skills added yet.</p>' : ''}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           ${skills.map(s => `
@@ -121,7 +121,7 @@ async function showBuilderForm(id) {
       </div>
 
       <div class="card">
-        <h3 class="font-semibold text-lg mb-3">🎓 Certifications</h3>
+        <h3 class="font-semibold text-lg mb-3">Certifications</h3>
         ${certs.length === 0 ? '<p class="text-slate-500 text-sm">None added yet.</p>' : ''}
         <div class="space-y-2">
           ${certs.map(c => `
@@ -138,7 +138,7 @@ async function showBuilderForm(id) {
       </div>
 
       <div class="card">
-        <h3 class="font-semibold text-lg mb-3">🏆 Awards</h3>
+        <h3 class="font-semibold text-lg mb-3">Awards</h3>
         ${awards.length === 0 ? '<p class="text-slate-500 text-sm">None added yet.</p>' : ''}
         <div class="space-y-2">
           ${awards.map(a => `

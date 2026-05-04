@@ -16,7 +16,7 @@ function renderResumePreview(container, data, resumeId) {
         <div class="flex gap-2">
           <button id="back-to-builder" class="btn-secondary">← Back</button>
           <button id="edit-resume-btn" class="btn-secondary">Edit Selections</button>
-          <button id="print-resume-btn" class="btn-primary">🖨️ Print / Save as PDF</button>
+          <button id="print-resume-btn" class="btn-primary">Print / Save as PDF</button>
         </div>
       </div>
 

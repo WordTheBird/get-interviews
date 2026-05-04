@@ -9,10 +9,17 @@
 }
 
 /* ==================== RESUME DOCUMENT ==================== */
+/* The resume always renders on a light background, even in dark mode,
+   because it's meant to represent printed paper. */
 .resume-doc {
     font-family: Georgia, 'Times New Roman', serif;
     color: #111;
+    background: #fff;
     line-height: 1.4;
+}
+
+.resume-doc * {
+    color: inherit;
 }
 
 .resume-section-title {
@@ -25,43 +32,37 @@
     margin-bottom: 6px;
 }
 
+/* Skip link */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+.focus\:not-sr-only:focus {
+    position: static;
+    width: auto; height: auto;
+    margin: 0; overflow: visible;
+    clip: auto; white-space: normal;
+}
+
 /* ==================== PRINT ==================== */
 @media print {
-    /* Hide everything outside the resume */
-    body * {
-        visibility: hidden;
-    }
-    #resume-document, #resume-document * {
-        visibility: visible;
-    }
+    body * { visibility: hidden; }
+    #resume-document, #resume-document * { visibility: visible; }
     #resume-document {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 0; left: 0;
         width: 100%;
         box-shadow: none !important;
         padding: 0.5in !important;
         max-width: none !important;
-    }
-
-    /* Hide nav, footer, action buttons */
-    header, footer, nav, .no-print {
-        display: none !important;
-    }
-
-    /* Don't break inside a job entry */
-    .resume-section > div {
-        page-break-inside: avoid;
-        break-inside: avoid;
-    }
-
-    /* Page setup */
-    @page {
-        size: letter;
-        margin: 0.5in;
-    }
-
-    body {
         background: white !important;
+        color: black !important;
     }
+    header, footer, nav, .no-print { display: none !important; }
+    .resume-section > div { page-break-inside: avoid; break-inside: avoid; }
+    @page { size: letter; margin: 0.5in; }
+    body { background: white !important; }
 }
