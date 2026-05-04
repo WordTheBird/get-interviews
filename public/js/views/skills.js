@@ -90,13 +90,17 @@ function wireSkillButtons() {
 }
 
 async function addCategory() {
-    const name = prompt('New category name (e.g., "Languages", "Frameworks"):');
-    if (!name || !name.trim()) return;
+    const name = await customPrompt('New category name', {
+        okLabel: 'Add Category',
+        placeholder: 'e.g., Languages, Frameworks, Tools'
+    });
+    if (!name) return;
     try {
-        await API.post('/skills/categories', { name: name.trim() });
+        await API.post('/skills/categories', { name });
+        showToast('Category added', 'success');
         loadSkills();
     } catch (err) {
-        alert('Failed to add: ' + err.message);
+        showToast('Failed to add category: ' + err.message, 'error');
     }
 }
 
@@ -138,7 +142,7 @@ async function showSkillForm() {
             });
             navigate('skills');
         } catch (err) {
-            alert('Failed: ' + err.message);
+            showToast(err.message, 'error');
         }
     });
 }

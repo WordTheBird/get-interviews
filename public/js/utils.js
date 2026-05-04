@@ -80,6 +80,50 @@ function customConfirm(message, { okLabel = 'Confirm', cancelLabel = 'Cancel', d
     });
 }
 
+// ==================== CUSTOM PROMPT DIALOG ====================
+function customPrompt(message, {
+    okLabel = 'OK',
+    cancelLabel = 'Cancel',
+    placeholder = '',
+    defaultValue = ''
+} = {}) {
+    return new Promise(resolve => {
+        const dialog = document.createElement('dialog');
+        dialog.className = 'rounded-lg p-0 max-w-md w-full backdrop:bg-black/50 dark:bg-slate-800';
+        dialog.innerHTML = `
+      <form method="dialog" class="p-6 space-y-4">
+        <label class="block text-slate-800 dark:text-slate-100">${escapeHtml(message)}</label>
+        <input type="text" class="input" placeholder="${escapeHtml(placeholder)}" value="${escapeHtml(defaultValue)}" autofocus>
+        <div class="flex justify-end gap-2">
+          <button type="button" data-cancel class="btn-secondary">${escapeHtml(cancelLabel)}</button>
+          <button type="submit" data-ok class="btn-primary">${escapeHtml(okLabel)}</button>
+        </div>
+      </form>
+    `;
+        document.body.appendChild(dialog);
+        dialog.showModal();
+
+        const input = dialog.querySelector('input');
+        setTimeout(() => input.focus(), 50);
+
+        const cleanup = (result) => {
+            dialog.close();
+            dialog.remove();
+            resolve(result);
+        };
+
+        dialog.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            cleanup(input.value.trim() || null);
+        });
+        dialog.querySelector('[data-cancel]').addEventListener('click', () => cleanup(null));
+        dialog.addEventListener('close', () => {
+            // Only fire if not already cleaned up
+            if (document.body.contains(dialog)) cleanup(null);
+        });
+    });
+}
+
 // ==================== DELETE WITH CONFIRMATION ====================
 async function confirmDelete(endpoint, message = 'Are you sure you want to delete this?') {
     const confirmed = await customConfirm(message, {

@@ -77,7 +77,7 @@ async function showJobForm(jobId) {
         try {
             job = await API.get(`/jobs/${jobId}`);
         } catch (err) {
-            alert('Failed to load job: ' + err.message);
+            showToast('Failed to load job: ' + err.message, 'error');
             return;
         }
     }
@@ -243,7 +243,7 @@ async function handleJobSubmit(e) {
         }
         navigate('jobs');
     } catch (err) {
-        alert('Failed to save: ' + err.message);
+        showToast('Failed to save: ' + err.message, 'error');
     }
 }
 
@@ -253,7 +253,7 @@ async function deleteJob(id) {
         await API.del(`/jobs/${id}`);
         await loadJobList();
     } catch (err) {
-        alert('Failed to delete: ' + err.message);
+        showToast('Failed to delete: ' + err.message, 'error');
     }
 }
 

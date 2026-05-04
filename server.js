@@ -33,13 +33,22 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Only start listening if not being required by another module (e.g. tests)
-const server = app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
-});
+/// Only auto-start the server when run standalone.
+// Under Electron, electron-main.js handles startup.
+let server = null;
+if (require.main === module) {
+    server = app.listen(PORT, () => {
+        console.log(`✅ Server running at http://localhost:${PORT}`);
+    });
+}
 
-module.exports = { app, server };
+module.exports = { app, startServer };
 
-app.listen(PORT, () => {
-    console.log(`✅ Get Interviews running at http://localhost:${PORT}`);
-});
+function startServer() {
+    if (!server) {
+        server = app.listen(PORT, () => {
+            console.log(`✅ Server running at http://localhost:${PORT}`);
+        });
+    }
+    return server;
+}

@@ -105,7 +105,7 @@ async function showAwardForm(id) {
             else await API.post('/awards', data);
             navigate('awards');
         } catch (err) {
-            alert('Failed: ' + err.message);
+            showToast(err.message, 'error');
         }
     });
 }

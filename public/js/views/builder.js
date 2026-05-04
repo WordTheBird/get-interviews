@@ -231,7 +231,7 @@ async function handleBuilderSubmit(e) {
         }
         showResumePreview(id);
     } catch (err) {
-        alert('Failed to save: ' + err.message);
+        showToast('Failed to save: ' + err.message, 'error');
     }
 }
 

@@ -103,7 +103,7 @@ async function showCertForm(id) {
             else await API.post('/certifications', data);
             navigate('certs');
         } catch (err) {
-            alert('Failed: ' + err.message);
+            showToast(err.message, 'error');
         }
     });
 }

@@ -1250,6 +1250,10 @@ body:is(.dark *) {
   margin-top: 1.5rem;
 }
 
+.block {
+  display: block;
+}
+
 .inline-block {
   display: inline-block;
 }

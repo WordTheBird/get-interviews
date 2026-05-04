@@ -9,16 +9,19 @@ let mainWindow = null;
 let serverProcess = null;
 const PORT = 3100; // Use a different port to avoid clashing with dev server
 
+// Avoid OneDrive sync conflicts with Electron's cache
+app.setPath('userData', path.join(app.getPath('appData'), 'get-interviews'));
+app.commandLine.appendSwitch('disable-gpu-shader-disk-cache');
+
 /**
  * Boot the Express server in-process (not as a child process).
  * This keeps everything in one Electron app and shares lifecycle.
  */
 function startServer() {
-    // Force the port BEFORE requiring server.js
     process.env.PORT = PORT;
     process.env.ELECTRON_RUN = 'true';
-    // Start the server (it will listen on PORT)
-    require('./server.js');
+    const { startServer: start } = require('./server.js');
+    start();
 }
 
 function createWindow() {
