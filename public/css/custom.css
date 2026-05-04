@@ -1,6 +1,4 @@
-/* Only put styles here that Tailwind can't easily handle */
-
-/* Smooth transitions for view changes */
+/* View transitions */
 #app {
     animation: fadeIn 200ms ease-in-out;
 }
@@ -10,7 +8,60 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Print styles for resumes — we'll expand these later */
+/* ==================== RESUME DOCUMENT ==================== */
+.resume-doc {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #111;
+    line-height: 1.4;
+}
+
+.resume-section-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+}
+
+/* ==================== PRINT ==================== */
 @media print {
-    header, footer, nav { display: none !important; }
+    /* Hide everything outside the resume */
+    body * {
+        visibility: hidden;
+    }
+    #resume-document, #resume-document * {
+        visibility: visible;
+    }
+    #resume-document {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: none !important;
+        padding: 0.5in !important;
+        max-width: none !important;
+    }
+
+    /* Hide nav, footer, action buttons */
+    header, footer, nav, .no-print {
+        display: none !important;
+    }
+
+    /* Don't break inside a job entry */
+    .resume-section > div {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Page setup */
+    @page {
+        size: letter;
+        margin: 0.5in;
+    }
+
+    body {
+        background: white !important;
+    }
 }

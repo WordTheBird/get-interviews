@@ -4,8 +4,8 @@ const routes = {
     skills: renderSkills,
     certs: renderCerts,
     awards: renderAwards,
+    builder: renderBuilder,
     settings: renderSettings,
-    // builder: coming next!
 };
 
 function navigate(routeName) {

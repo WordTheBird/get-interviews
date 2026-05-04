@@ -20,6 +20,7 @@ app.use('/api/skills', require('./routes/skills'));
 app.use('/api/certifications', require('./routes/certifications'));
 app.use('/api/awards', require('./routes/awards'));
 app.use('/api/profile', require('./routes/profile'));
+app.use('/api/resumes', require('./routes/resumes'));
 app.use('/api/ai', require('./routes/ai'));
 
 // Safety net: any unknown /api/* should return JSON 404, not HTML
