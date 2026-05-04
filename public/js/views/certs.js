@@ -63,25 +63,21 @@ async function showCertForm(id) {
       <h2 class="text-3xl font-bold">${id ? 'Edit' : 'Add'} Certification</h2>
       <div class="card space-y-4">
         <div>
-          <label for="cert-name" class="block text-sm font-medium">Name *</label>
-          <input id="cert-name" name="name" type="text" required value="${escapeHtml(cert.name)}"
-                 class="mt-1 block w-full rounded-md border-slate-300">
+          <label for="cert-name" class="label">Name *</label>
+          <input id="cert-name" name="name" type="text" required value="${escapeHtml(cert.name)}" class="input">
         </div>
         <div>
-          <label for="cert-issuer" class="block text-sm font-medium">Issuer</label>
-          <input id="cert-issuer" name="issuer" type="text" value="${escapeHtml(cert.issuer || '')}"
-                 class="mt-1 block w-full rounded-md border-slate-300">
+          <label for="cert-issuer" class="label">Issuer</label>
+          <input id="cert-issuer" name="issuer" type="text" value="${escapeHtml(cert.issuer || '')}" class="input">
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label for="cert-earned" class="block text-sm font-medium">Date Earned</label>
-            <input id="cert-earned" name="date_earned" type="date" value="${cert.date_earned || ''}"
-                   class="mt-1 block w-full rounded-md border-slate-300">
+            <label for="cert-earned" class="label">Date Earned</label>
+            <input id="cert-earned" name="date_earned" type="date" value="${cert.date_earned || ''}" class="input">
           </div>
           <div>
-            <label for="cert-exp" class="block text-sm font-medium">Expiration</label>
-            <input id="cert-exp" name="expiration_date" type="date" value="${cert.expiration_date || ''}"
-                   class="mt-1 block w-full rounded-md border-slate-300">
+            <label for="cert-exp" class="label">Expiration</label>
+            <input id="cert-exp" name="expiration_date" type="date" value="${cert.expiration_date || ''}" class="input">
           </div>
         </div>
       </div>

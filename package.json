@@ -1,34 +1,76 @@
 {
   "name": "get-interviews",
   "version": "1.0.0",
-  "description": "A resume builder developed as a final project for CSC-3100.",
-  "main": "server.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "description": "A locally-run resume builder with AI-powered writing suggestions",
+  "main": "electron-main.js",
+  "private": true,
+  "author": "D. Edward Parrott",
+  "license": "MIT",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
     "build:css": "tailwindcss -i ./src/input.css -o ./public/css/tailwind.css",
     "watch:css": "tailwindcss -i ./src/input.css -o ./public/css/tailwind.css --watch",
-    "dev:all": "concurrently \"npm run watch:css\" \"npm run dev\""
+    "dev:all": "concurrently \"npm run watch:css\" \"npm run dev\"",
+    "electron": "npm run build:css && electron .",
+    "electron:dev": "concurrently \"npm run watch:css\" \"electron .\"",
+    "package": "npm run build:css && electron-builder",
+    "package:win": "npm run build:css && electron-builder --win",
+    "package:mac": "npm run build:css && electron-builder --mac",
+    "package:linux": "npm run build:css && electron-builder --linux",
+    "postinstall": "electron-rebuild"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "build": {
+    "appId": "com.WordTheBird.getinterviews",
+    "productName": "Get Interviews",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "electron-main.js",
+      "server.js",
+      "db/**/*",
+      "routes/**/*",
+      "public/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      "db/schema.sql"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icons/android-chrome-512x512.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "public/icons/android-chrome-512x512.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "public/icons/android-chrome-512x512.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.4",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
+    "concurrently": "^9.2.1",
+    "electron": "^41.5.0",
+    "electron-builder": "^26.8.1",
+    "nodemon": "^3.1.14",
+    "tailwindcss": "^3.4.19"
+  },
   "dependencies": {
     "@google/genai": "^1.51.0",
     "better-sqlite3": "^12.9.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.11",
-    "@tailwindcss/typography": "^0.5.19",
-    "concurrently": "^9.2.1",
-    "nodemon": "^3.1.14",
-    "tailwindcss": "^3.4.19"
   }
 }

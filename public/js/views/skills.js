@@ -109,13 +109,12 @@ async function showSkillForm() {
       <h2 class="text-3xl font-bold">Add Skill</h2>
       <div class="card space-y-4">
         <div>
-          <label for="skill-name" class="block text-sm font-medium">Skill Name *</label>
-          <input id="skill-name" name="name" type="text" required
-                 class="mt-1 block w-full rounded-md border-slate-300">
+          <label for="skill-name" class="label">Skill Name *</label>
+          <input id="skill-name" name="name" type="text" required class="input">
         </div>
         <div>
-          <label for="skill-cat" class="block text-sm font-medium">Category</label>
-          <select id="skill-cat" name="category_id" class="mt-1 block w-full rounded-md border-slate-300">
+          <label for="skill-cat" class="label">Category</label>
+          <select id="skill-cat" name="category_id" class="input">
             <option value="">— Uncategorized —</option>
             ${cats.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join('')}
           </select>

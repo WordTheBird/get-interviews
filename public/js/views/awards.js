@@ -61,29 +61,25 @@ async function showAwardForm(id) {
       <h2 class="text-3xl font-bold">${id ? 'Edit' : 'Add'} Award</h2>
       <div class="card space-y-4">
         <div>
-          <label for="aw-name" class="block text-sm font-medium">Name *</label>
-          <input id="aw-name" name="name" type="text" required value="${escapeHtml(award.name)}"
-                 class="mt-1 block w-full rounded-md border-slate-300">
+          <label for="aw-name" class="label">Name *</label>
+          <input id="aw-name" name="name" type="text" required value="${escapeHtml(award.name)}" class="input">
         </div>
         <div>
-          <label for="aw-issuer" class="block text-sm font-medium">Issuer / Organization</label>
-          <input id="aw-issuer" name="issuer" type="text" value="${escapeHtml(award.issuer || '')}"
-                 class="mt-1 block w-full rounded-md border-slate-300">
+          <label for="aw-issuer" class="label">Issuer / Organization</label>
+          <input id="aw-issuer" name="issuer" type="text" value="${escapeHtml(award.issuer || '')}" class="input">
         </div>
         <div>
-          <label for="aw-date" class="block text-sm font-medium">Date Received</label>
-          <input id="aw-date" name="date_received" type="date" value="${award.date_received || ''}"
-                 class="mt-1 block w-full rounded-md border-slate-300">
+          <label for="aw-date" class="label">Date Received</label>
+          <input id="aw-date" name="date_received" type="date" value="${award.date_received || ''}" class="input">
         </div>
         <div>
-          <label for="aw-desc" class="block text-sm font-medium">Description</label>
-          <textarea id="aw-desc" name="description" rows="3"
-                    class="mt-1 block w-full rounded-md border-slate-300">${escapeHtml(award.description || '')}</textarea>
+          <label for="aw-desc" class="label">Description</label>
+          <textarea id="aw-desc" name="description" rows="3" class="input">${escapeHtml(award.description || '')}</textarea>
           <div class="mt-2 flex gap-2 items-center flex-wrap">
             <button type="button" id="aw-ai-btn" class="btn-secondary text-xs">✨ AI Suggestion</button>
-            <span id="aw-ai-status" class="text-xs text-slate-500" role="status" aria-live="polite"></span>
+            <span id="aw-ai-status" class="text-xs text-slate-500 dark:text-slate-400" role="status" aria-live="polite"></span>
           </div>
-          <div id="aw-ai-box" class="hidden mt-2 bg-brand-50 border border-brand-200 rounded-md p-3 text-sm space-y-2"></div>
+          <div id="aw-ai-box" class="hidden mt-2 bg-brand-50 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-700 rounded-md p-3 text-sm space-y-2"></div>
         </div>
       </div>
       <div class="flex gap-3">

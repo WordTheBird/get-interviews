@@ -33,10 +33,13 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
+// Only start listening if not being required by another module (e.g. tests)
+const server = app.listen(PORT, () => {
     console.log(`✅ Server running at http://localhost:${PORT}`);
 });
 
+module.exports = { app, server };
+
 app.listen(PORT, () => {
-    console.log(`✅ ResuMate running at http://localhost:${PORT}`);
+    console.log(`✅ Get Interviews running at http://localhost:${PORT}`);
 });

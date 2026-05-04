@@ -138,3 +138,7 @@ dist
 # other
 .DS_Store
 .idea/
+db/*.db
+db/*.db-journal
+docs/lighthouse-accessibility.html
+dist-electron/

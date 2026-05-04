@@ -82,16 +82,14 @@ async function showBuilderForm(id) {
 
       <div class="card space-y-4">
         <div>
-          <label for="r-name" class="block text-sm font-medium">Resume Name *</label>
+          <label for="r-name" class="label">Resume Name *</label>
           <input id="r-name" name="name" type="text" required value="${escapeHtml(existing?.name || '')}"
-                 placeholder="e.g., Software Engineer Application"
-                 class="mt-1 block w-full rounded-md border-slate-300">
+                 placeholder="e.g., Software Engineer Application" class="input">
         </div>
         <div>
-          <label for="r-target" class="block text-sm font-medium">Target Job</label>
+          <label for="r-target" class="label">Target Job</label>
           <input id="r-target" name="target_job" type="text" value="${escapeHtml(existing?.target_job || '')}"
-                 placeholder="e.g., Frontend Engineer at TechCorp"
-                 class="mt-1 block w-full rounded-md border-slate-300">
+                 placeholder="e.g., Frontend Engineer at TechCorp" class="input">
         </div>
       </div>
 
@@ -237,7 +235,7 @@ async function handleBuilderSubmit(e) {
     }
 }
 
-// Placeholder until Phase 2
+// Load resume and hand it off to renderResumePreview() in preview.js
 async function showResumePreview(id) {
     const main = document.getElementById('app');
     main.innerHTML = '<p>Loading preview...</p>';
@@ -245,6 +243,6 @@ async function showResumePreview(id) {
         const data = await API.get(`/resumes/${id}/full`);
         renderResumePreview(main, data, id);
     } catch (err) {
-        main.innerHTML = `<p class="text-red-600">Error: ${err.message}</p>`;
+        main.innerHTML = `<p class="text-red-600 dark:text-red-400">Error loading preview: ${escapeHtml(err.message)}</p>`;
     }
 }

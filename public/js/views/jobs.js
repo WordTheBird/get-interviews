@@ -88,40 +88,35 @@ async function showJobForm(jobId) {
 
       <div class="card space-y-4">
         <div>
-          <label for="job-title" class="block text-sm font-medium text-slate-700">Job Title *</label>
-          <input id="job-title" name="title" type="text" required value="${escapeHtml(job.title)}"
-                 class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-brand-500 focus:ring-brand-500">
+          <label for="job-title" class="label">Job Title *</label>
+          <input id="job-title" name="title" type="text" required value="${escapeHtml(job.title)}" class="input">
         </div>
 
         <div>
-          <label for="job-company" class="block text-sm font-medium text-slate-700">Company *</label>
-          <input id="job-company" name="company" type="text" required value="${escapeHtml(job.company)}"
-                 class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-brand-500 focus:ring-brand-500">
+          <label for="job-company" class="label">Company *</label>
+          <input id="job-company" name="company" type="text" required value="${escapeHtml(job.company)}" class="input">
         </div>
 
         <div>
-          <label for="job-location" class="block text-sm font-medium text-slate-700">Location</label>
-          <input id="job-location" name="location" type="text" value="${escapeHtml(job.location || '')}"
-                 class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-brand-500 focus:ring-brand-500">
+          <label for="job-location" class="label">Location</label>
+          <input id="job-location" name="location" type="text" value="${escapeHtml(job.location || '')}" class="input">
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label for="job-start" class="block text-sm font-medium text-slate-700">Start Date</label>
-            <input id="job-start" name="start_date" type="month" value="${job.start_date || ''}"
-                   class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-brand-500 focus:ring-brand-500">
+            <label for="job-start" class="label">Start Date</label>
+            <input id="job-start" name="start_date" type="month" value="${job.start_date || ''}" class="input">
           </div>
           <div>
-            <label for="job-end" class="block text-sm font-medium text-slate-700">End Date</label>
-            <input id="job-end" name="end_date" type="month" value="${job.end_date || ''}"
-                   class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-brand-500 focus:ring-brand-500">
+            <label for="job-end" class="label">End Date</label>
+            <input id="job-end" name="end_date" type="month" value="${job.end_date || ''}" class="input">
           </div>
         </div>
 
         <label class="flex items-center gap-2">
           <input id="job-current" name="is_current" type="checkbox" ${job.is_current ? 'checked' : ''}
-                 class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
-          <span class="text-sm text-slate-700">I currently work here</span>
+                 class="rounded border-slate-300 text-brand-600 focus:ring-brand-500 dark:bg-slate-700 dark:border-slate-600">
+          <span class="text-sm text-slate-700 dark:text-slate-300">I currently work here</span>
         </label>
       </div>
 
@@ -157,16 +152,16 @@ async function showJobForm(jobId) {
 
 function addResponsibilityInput(list, value) {
     const li = document.createElement('li');
-    li.className = 'border border-slate-200 rounded-md p-3 bg-slate-50 space-y-2';
+    li.className = 'border border-slate-200 dark:border-slate-700 rounded-md p-3 bg-slate-50 dark:bg-slate-700/50 space-y-2';
     li.innerHTML = `
-    <textarea rows="2" class="resp-input block w-full rounded-md border-slate-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
+    <textarea rows="2" class="resp-input input"
               placeholder="Describe an accomplishment or responsibility...">${escapeHtml(value)}</textarea>
     <div class="flex gap-2 items-center flex-wrap">
       <button type="button" class="ai-suggest-btn btn-secondary text-xs">✨ AI Suggestion</button>
       <button type="button" class="remove-resp-btn btn-danger text-xs">Remove</button>
-      <span class="ai-status text-xs text-slate-500" role="status" aria-live="polite"></span>
+      <span class="ai-status text-xs text-slate-500 dark:text-slate-400" role="status" aria-live="polite"></span>
     </div>
-    <div class="ai-suggestion-box hidden bg-brand-50 border border-brand-200 rounded-md p-3 text-sm space-y-2"></div>
+    <div class="ai-suggestion-box hidden bg-brand-50 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-700 rounded-md p-3 text-sm space-y-2"></div>
   `;
     list.appendChild(li);
 
