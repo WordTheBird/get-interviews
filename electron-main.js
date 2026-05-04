@@ -31,7 +31,7 @@ function createWindow() {
         minWidth: 900,
         minHeight: 600,
         title: 'Get Interviews',
-        icon: path.join(__dirname, 'public', 'icons', 'android-chrome-512x512.png'),
+        icon: path.join(__dirname, 'public', 'icons', 'web-app-manifest-512x512.png'),
         backgroundColor: '#0f172a', // matches dark mode bg, prevents white flash
         webPreferences: {
             contextIsolation: true,
