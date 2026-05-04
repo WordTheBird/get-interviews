@@ -1,5 +1,5 @@
 const express = require('express');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 const db = require('../db/database');
 const router = express.Router();
 
@@ -27,8 +27,8 @@ router.post('/suggest', async (req, res) => {
             });
         }
 
-        const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+        // Initialize the new Google GenAI client
+        const ai = new GoogleGenAI({ apiKey });
 
         const prompt = `You are a professional resume coach helping a student craft compelling resume bullet points.
 
@@ -49,8 +49,13 @@ Respond ONLY with valid JSON in this exact format:
 
 Do not include markdown code fences or any other text outside the JSON.`;
 
-        const result = await model.generateContent(prompt);
-        const responseText = result.response.text().trim();
+        // Call the API using the new SDK pattern
+        const result = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: prompt
+        });
+
+        const responseText = (result.text || '').trim();
 
         // Strip markdown fences if Gemini adds them anyway
         const cleaned = responseText
@@ -62,7 +67,6 @@ Do not include markdown code fences or any other text outside the JSON.`;
         try {
             parsed = JSON.parse(cleaned);
         } catch (e) {
-            // If JSON parsing fails, return raw text as fallback
             return res.json({
                 revised: responseText,
                 suggestions: ['(AI returned non-JSON response — shown above)']
