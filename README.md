@@ -1,2 +1,7 @@
-# get-interviews
-A resume builder developed as a final project for CSC-3100.
+# Get Interviews
+
+A locally-run, single-page resume builder with AI-powered writing suggestions.
+
+**GitHub:** https://github.com/YOUR_USERNAME/get-interviews
+
+Built as the final project for CSC3100.
