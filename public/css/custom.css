@@ -1,0 +1,16 @@
+/* Only put styles here that Tailwind can't easily handle */
+
+/* Smooth transitions for view changes */
+#app {
+    animation: fadeIn 200ms ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Print styles for resumes — we'll expand these later */
+@media print {
+    header, footer, nav { display: none !important; }
+}

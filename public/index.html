@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Interviews – Resume Builder</title>
+    <meta name="description" content="Build tailored resumes that help you get interviews.">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col">
+
+<header role="banner" class="bg-white shadow-sm border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav role="navigation" aria-label="Main navigation" class="flex items-center justify-between h-16">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl" aria-hidden="true">📄</span>
+                <h1 class="text-lg font-bold text-brand-700">Get Interviews</h1>
+            </div>
+            <div class="flex items-center gap-1 flex-wrap">
+                <button data-route="dashboard" class="nav-btn">Dashboard</button>
+                <button data-route="jobs" class="nav-btn">Jobs</button>
+                <button data-route="skills" class="nav-btn">Skills</button>
+                <button data-route="certs" class="nav-btn">Certifications</button>
+                <button data-route="awards" class="nav-btn">Awards</button>
+                <button data-route="builder" class="nav-btn">Build Resume</button>
+                <button data-route="settings" class="nav-btn">Settings</button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="app" role="main" aria-live="polite" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+    <p>Loading...</p>
+</main>
+
+<footer role="contentinfo" class="bg-white border-t border-slate-200 py-4">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500">
+        <button id="credits-btn" class="hover:text-brand-600 underline">Credits & Libraries</button>
+    </div>
+</footer>
+
+<!-- Credits Modal -->
+<dialog id="credits-modal" class="rounded-lg p-6 max-w-md backdrop:bg-black/50">
+    <h2 class="text-xl font-bold mb-4">Built With ❤️</h2>
+    <ul class="space-y-2 text-slate-700">
+        <li>• Express.js — Web framework</li>
+        <li>• better-sqlite3 — Database</li>
+        <li>• Tailwind CSS — Styling</li>
+        <li>• Google Generative AI — AI suggestions</li>
+    </ul>
+    <button id="close-credits" class="btn-primary mt-6">Close</button>
+</dialog>
+
+<script src="/js/api.js"></script>
+<script src="/js/views/dashboard.js"></script>
+<script src="/js/views/jobs.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
